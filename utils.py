@@ -53,7 +53,7 @@ def displayaccuracybyclass():
 
 def plot_CLR_graph(model):
     
-    ''' Plot Cycle LR graph'''
+    ''' Plot Cycle LR graph with LR_Min=0.001 , LR_Max=1.0'''
     
     _optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
     _scheduler = torch.optim.lr_scheduler.CyclicLR(_optimizer, base_lr=0.001, max_lr=1.0, step_size_up=20,mode="triangular")
@@ -94,7 +94,7 @@ def plotLRRangeTest_graph(num_epochs):
 
     #print(lrs, test_accuracies_for_LRRageTest)
     fig, ax = plt.subplots()
-    ax.plot(lrs, test_accuracies_for_LRRageTest)
+    ax.plot(lrs[0:12], test_accuracies_for_LRRageTest[0:12])
     ax.set(xlabel='Learning Rate', ylabel='Test Accuracy', title='test')
     ax.grid()
     plt.show()
